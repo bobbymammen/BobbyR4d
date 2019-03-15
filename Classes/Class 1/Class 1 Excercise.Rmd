@@ -1,0 +1,57 @@
+---
+title: " Class1  Excercise"
+output: html_notebook
+---
+```{r}
+firstvar
+```
+##Create and store a character vector (of your choice), 
+a numeric vector (interger/double) and a factor, all of the same length
+
+```{r}
+Salesregions <- c("NA","Europe","Asia Pacific")
+Sales <-c(200,300,400.0)
+length (Salesregions)
+length (Sales)
+
+```
+2. Use `seq()` to generate an atomic vector containing all the odd numbers less than 100
+```{r}
+seq(from = 99, to = 1, by = -2.0)
+```
+
+3. Store all the vectors created in step 1 in a named list
+```{r}
+testlist <- list(Salesregions,Sales)
+testlist
+```
+
+4. Create a dataframe using all the vectors stored in step 1
+```{r}
+regionaldata <- data.frame(Region = Salesregions, SalesAmount = Sales)
+regionaldata
+
+```
+
+regionaldata <- data.frame(Region = Salesregions, Sales Amount = sales)
+
+5. Predict the output of the following without running the code in 
+`+ c("FALSE", FALSE)`- "Character",
+`+ c(1.0, FALSE)- "Double"`, `
+ + c(2, TRUE)- "Double", 
+`+c("two", 2)- "character"`
+
+6. What get returned when you check the `typeof()` the dataframe created in step 4. Why?
+
+```{r}
+typeof(regionaldata)
+
+```
+```{r}
+install.packages("tidyverse")
+```
+```{r}
+vignette(package = "ggplot2")
+
+```
+

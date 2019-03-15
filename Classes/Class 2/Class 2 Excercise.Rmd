@@ -1,0 +1,9 @@
+---
+title: "Class 2 Excercise"
+output:  html_document
+   
+---
+```{r}
+
+```
+
