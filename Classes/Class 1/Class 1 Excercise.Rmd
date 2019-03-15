@@ -1,8 +1,12 @@
 ---
-title: " Class1  Excercise"
+title: " Class1  Execrcise"
 output: html_notebook
 ---
+## The R code
+
+
 ```{r}
+
 firstvar
 ```
 ##Create and store a character vector (of your choice), 
