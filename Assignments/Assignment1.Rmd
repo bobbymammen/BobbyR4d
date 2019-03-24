@@ -247,14 +247,16 @@ flights %>%
     + ~~Strike through me~~
 
 2. Create a level three header called "My level 3 header" under this line 
+
 ### My level 3 header
 
 3. Modify the content below so that the bullet points (unordered list) render correctly
 
 **Messy bullet points**
-- one
-- two
-- three
+
+ - one
+ - two
+ - three
 
 4. Use chunk options to hide the output and the code from the chunk below in the previewed notebook.
 
