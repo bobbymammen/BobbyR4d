@@ -247,7 +247,7 @@ flights %>%
     + ~~Strike through me~~
 
 2. Create a level three header called "My level 3 header" under this line 
-### "My level 3 header"
+### My level 3 header
 
 3. Modify the content below so that the bullet points (unordered list) render correctly
 
