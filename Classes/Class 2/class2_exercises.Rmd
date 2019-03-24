@@ -10,7 +10,7 @@ output:
     code_folding: show
     df_print: paged
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 **Instructions**: Give your answers below each numbered task
 
@@ -46,17 +46,11 @@ length(logicalmind)
 
 
 7. Replicate the examples at the bottom of the help page i.e. copy paste and run them in a chunk. Ignore the examples for factors (the ones that use the `gl()` command).
-``{r}
-1:4
-pi:6 # real
-6:pi # integer
-```
 8. Explain in a couple of short sentences why `c("one", 1)` yields the atomic vector `["one", "1"]`.
 
 `
 ```{r}
 library(tidyverse)
-
 library('nycflights13')
 flights
 

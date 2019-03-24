@@ -1,6 +1,6 @@
 ---
 title: "Assignment 1"
-author: Hari Subhash
+author: Bobby Mammen
 date: "Date created: `r Sys.Date()`"
 output:
   html_notebook:
@@ -83,17 +83,20 @@ globalSales
 5. Create the same data frame as above using `tibble()` function
 
 ```{r}
+install.packages("tibble")
+library("tibble")
 worldwideSales <- tibble(salesRegions,widgetUnits,salesManager)
+worldwideSales
 ```
 
 6. Use the `str()`, `class()` and or `glimpse()` command to see the difference between the dataframe and tibble create in 4 and 5.
 
 ```{r}
-str(globalSales)
-str(worldwideSales)
+str (globalSales)
+str (worldwideSales)
 
-class(globalSales)
-class(worldwideSales)
+class (globalSales)
+class (worldwideSales)
 
 ```
 
@@ -113,44 +116,60 @@ class(worldwideSales)
 
 ```{r}
 
+library(tidyverse)
+library(nycflights13)
 ```
 
 2. Describe two ways in which you can use RStudio confirm that a package has been loaded into your current R session? (Hint: One of them is a dropdown menu and the other a list of checkboxes)
 
-    + Answer:
+    + Answer:Show Packages and look at Packages 
 
 3. Use the `distinct()` command to identify the unique combinations of airline carriers and origin airports in the flights data.
 
 ```{r}
-
+flights %>% 
+  distinct(origin,carrier)
 ```
 
 4. Use the `one_of()` helper function to select the following columns -  year, month, day, dep_time, sched_dep_time, dep_delay, arr_time, from the flights data.
 
 ```{r}
-
+flights %>% 
+one_of(,year, month, day, dep_time, sched_dep_time, dep_delay, arr_time)
 ```
 
 5. Use the `slice()` function to slice the first 10 rows in the flights data.
 
 ```{r}
 
+  slice(flights,1:10)
 ```
 
 6. Perform the same operation as the previous task but this time use `filter()`. (Hint: Search for how to get the row numbers of a tibble)
 
 ```{r}
 
+
+filter(newFlights, 1:10,.preserve=FALSE)
+
 ```
 
 7. Use the `top_n()` command to identify the top 5 flights out of NYC that experienced the greatest arrival delays in 2013.
 
 ```{r}
-
+flights %>% 
+  group_by(origin="NYC") %>% 
+  arrange(desc(dep_delay)) %>% 
+top_n(5)
 ```
 
 8. Use `top_n()` along with `arrange()` and `slice()` to pull out the 50th most delayed departure from NYC in 2013 (Not all 50, just the 50th). 
 ```{r}
+flights %>% 
+  group_by(origin="NYC") %>% 
+  arrange(desc(dep_delay)) %>% 
+    slice(50,) %>% 
+top_n(-1)
 
 ```
 
@@ -172,22 +191,39 @@ class(worldwideSales)
 
 11. Find the top 10 airline carrier that had the highest average departure delays in 2013 using `group_by()`, `summarise()` and other functions you have learnt previously.
 ```{r}
+flights %>% 
+  group_by(carrier) %>% 
+  summarise(avgDelay=mean(dep_delay,na.rm=T)) %>% 
+  arrange(desc(avgDelay)) %>% 
+  top_n(10)
+
 
 ```
 
 12. Use `group_by()` with `mutate()` to create a new variable called `comparativeDelay` which is the difference between departure delay and the average delay in each origin airport for every hour in 2013 (checkout the `time_hour` variable in the flights data). Store the result in a variable called `comparativeDelays`.
 ```{r}
-
+comparitiveDelays <- flights %>% 
+  group_by(origin,hour) %>% 
+ mutate(avgDelay=mean(dep_delay,na.rm=T)) %>% 
+  mutate(comparativeDelay=dep_delay-avgDelay) 
 ```
 
 13. Now group the `comparativeDelays` tibble by carriers to print the top 10 airlines with the greatest average comparative delays.
 ```{r}
-
+comparitiveDelays%>% 
+  group_by(carrier) %>% 
+   summarise(avgcomparitiveDelay=mean(comparativeDelay,na.rm=T)) %>% 
+  arrange(desc(avgcomparitiveDelay)) %>% 
+  top_n(10)
+  
 ```
 
 14. Use `group_by()` with filter to print the 5 most delayed flights from each origin. Your printed tibble should have 15 rows.
 ```{r}
-
+flights %>% 
+  arrange(desc(dep_delay)) %>% 
+  ungroup(carrier,hour) %>% 
+  group_by(origin)
 ```
 
 15. The air authority in NY wants to penalize carriers for departure delays. Which of the three metrics (task 1, 3 or 4) would you recommend they use to identify the airlines to penalize. Why?
