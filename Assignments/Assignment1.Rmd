@@ -221,9 +221,9 @@ comparitiveDelays%>%
 14. Use `group_by()` with filter to print the 5 most delayed flights from each origin. Your printed tibble should have 15 rows.
 ```{r}
 flights %>% 
-  arrange(desc(dep_delay)) %>% 
-  ungroup(carrier,hour) %>% 
-  group_by(origin)
+    group_by(origin) %>% 
+  filter()
+  
 ```
 
 15. The air authority in NY wants to penalize carriers for departure delays. Which of the three metrics (task 1, 3 or 4) would you recommend they use to identify the airlines to penalize. Why?
@@ -234,7 +234,7 @@ flights %>%
 
 1. Modify the text below as per the prompt
     + Underline me
-    + Make me bold
+    **+ Make me bold**
     + Make me a block quote
     + Make me italic
     + Strike through me
