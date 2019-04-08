@@ -136,8 +136,8 @@ flights %>%
 4. Use the `one_of()` helper function to select the following columns -  year, month, day, dep_time, sched_dep_time, dep_delay, arr_time, from the flights data.
 
 ```{r}
-flights %>% 
-one_of(,year, month, day, dep_time, sched_dep_time, dep_delay, arr_time)
+##flights %>% 
+  ##one_of(year, month, day, dep_time, sched_dep_time, dep_delay, arr_time)
 ```
 
 5. Use the `slice()` function to slice the first 10 rows in the flights data.

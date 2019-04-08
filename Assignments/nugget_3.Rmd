@@ -201,9 +201,8 @@ ggplot(mapping = aes(x = carrier, y = meandeparturedelays)) +
 
 ```{r}
 flights %>% 
-  group_by(distance) %>% 
-   ggplot(mapping = aes(x = distance, y = arr_delay)) +
-  geom_point(na.rm=T)
+    ggplot(mapping = aes(x =distance, y = arr_delay)) +
+  geom_smooth(method=lm,na.rm=T)
  
 
 ```
@@ -211,13 +210,43 @@ flights %>%
 
 ##Day 5
 1. Look at the documentation of `facet_grid()` and create a histogram for each combination of origin and carrier.
+```{r}
+flights %>% 
+ggplot(mapping=aes(dep_delay))+
+  geom_histogram(bins=5)+
+  facet_grid(carrier ~ origin,scales="free_x",space="free")+
+  ggsave("Facet_Nugget.png")
+```
+
+
 
 ##Day 6
 1. Pick any chart you have made so far and make it publication ready
     + Add labels and titles
     + Add the following subtitle to it: "A chart I made for the daily tasks"
     + Try out a new theme from the ggthemes package
+
+```{r}
+flights %>% 
+ filter(dep_delay > 0) %>%
+ mutate (timeMadeUp=dep_delay-arr_delay) %>% 
+  group_by(carrier) %>% 
+    summarise(meandeparturedelays = mean(timeMadeUp, na.rm = T)) %>% 
+ggplot(mapping = aes(x = carrier, y = meandeparturedelays)) +
+  geom_col(mapping = aes(group = carrier)) +
+labs(x = "Carrier Name",
+         y = "TIme made up while in air",
+         title = "Most flights make time while in air",subtitle = "A chart I made for the daily tasks")+
+  theme_economist() +
+
+ggsave("Nugget.png")
+
+```
+
+
 2. Save this chart and share it on #general channel on slack
+
+
 3. Preview this notebook and push your changes to github. Share the link with me (personally on Slack) before 6:00 PM EST, Tuesday, April 2nd
 
 
